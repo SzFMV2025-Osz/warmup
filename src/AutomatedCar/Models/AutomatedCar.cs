@@ -1,16 +1,21 @@
 namespace AutomatedCar.Models
 {
     using Avalonia.Media;
-    using SystemComponents;
+    using global::AutomatedCar.SystemComponents;
+    using global::AutomatedCar.SystemComponents.Sensors;
+
 
     public class AutomatedCar : Car
     {
         private VirtualFunctionBus virtualFunctionBus;
+        private DummySensor dummySensor;
 
         public AutomatedCar(int x, int y, string filename)
             : base(x, y, filename)
         {
             this.virtualFunctionBus = new VirtualFunctionBus();
+            this.dummySensor = new DummySensor(this.virtualFunctionBus, this);
+            
             this.ZIndex = 10;
         }
 
