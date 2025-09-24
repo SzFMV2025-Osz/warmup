@@ -20,8 +20,8 @@
             var car = world.ControlledCar;
             var circle = world.WorldObjects.OfType<Circle>().FirstOrDefault();
 
-            this.dummyPacket.DistanceX = circle.X - car.X;
-            this.dummyPacket.DistanceY = circle.Y - car.Y;
+            this.dummyPacket.DistanceX = System.Math.Abs(circle.X - car.X);
+            this.dummyPacket.DistanceY = System.Math.Abs(circle.Y - car.Y);
         }
 
 
