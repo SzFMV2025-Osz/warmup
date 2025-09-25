@@ -5,18 +5,22 @@ namespace AutomatedCar.SystemComponents
 
     public class VirtualFunctionBus : GameBase
     {
-        private List<SystemComponent> components = new List<SystemComponent>();
+        private readonly List<SystemComponent> components = new();
 
-        public IReadOnlyDummyPacket DummyPacket { get; set; }
+        // Irható bsuzos példány
+        private readonly DummyPacket _dummy = new DummyPacket();
 
-        public void RegisterComponent(SystemComponent component)
-        {
-            this.components.Add(component);
-        }
+        // Kifelé csak olvasható
+        public IReadOnlyDummyPacket DummyPacket => _dummy;
+
+        // Szenzoroknak írható ref
+        internal DummyPacket WritableDummyPacket => _dummy;
+
+        public void RegisterComponent(SystemComponent component) => components.Add(component);
 
         protected override void Tick()
         {
-            foreach (SystemComponent component in this.components)
+            foreach (var component in components)
             {
                 component.Process();
             }

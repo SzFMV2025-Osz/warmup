@@ -71,9 +71,9 @@ namespace AutomatedCar
             world.AddObject(circle);
         }
 
-        private AutomatedCar CreateControlledCar(int x, int y, int rotation, string filename)
+        private AutomatedCar CreateControlledCar(int x, int y, int rotation, string filename, World world)
         {
-            var controlledCar = new Models.AutomatedCar(x, y, filename);
+            var controlledCar = new Models.AutomatedCar(x, y, filename, world);
             
             controlledCar.Geometry = this.GetControlledCarBoundaryBox();
             controlledCar.RawGeometries.Add(controlledCar.Geometry);
@@ -88,8 +88,8 @@ namespace AutomatedCar
 
         private void AddControlledCarsTo(World world)
         {
-            var controlledCar = this.CreateControlledCar(480, 1425, 0, "car_1_white.png");
-            var controlledCar2 = this.CreateControlledCar(4250, 1420, -90, "car_1_red.png");
+            var controlledCar = this.CreateControlledCar(480, 1425, 0, "car_1_white.png", world);
+            var controlledCar2 = this.CreateControlledCar(4250, 1420, -90, "car_1_red.png", world);
 
             world.AddControlledCar(controlledCar);
             world.AddControlledCar(controlledCar2);
