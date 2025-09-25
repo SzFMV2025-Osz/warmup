@@ -11,8 +11,12 @@ namespace AutomatedCar.Models
             : base(x, y, filename)
         {
             this.virtualFunctionBus = new VirtualFunctionBus();
+            this.dummySensor = new DummySensor(this.virtualFunctionBus);
+            this.virtualFunctionBus.RegisterComponent(this.dummySensor);
             this.ZIndex = 10;
         }
+
+        private DummySensor dummySensor { get; set; }
 
         public VirtualFunctionBus VirtualFunctionBus { get => this.virtualFunctionBus; }
 
